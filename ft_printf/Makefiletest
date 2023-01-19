@@ -1,0 +1,86 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: vgoret <vgoret@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/12/08 14:18:41 by vgoret            #+#    #+#              #
+#    Updated: 2022/12/08 15:13:02 by vgoret           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+################################################################################
+# ! ARGUMENTS ! #
+
+NAME	=	libftprintf.a
+CCFLAGS	=	-Wall -Werror -Wextra
+CC	=	gcc
+
+
+################################################################################
+# * SRC * #
+
+SRC = ft_printf.c \
+	ft_putstr.c \
+	ft_print_void.c \
+	ft_print_nb.c \
+	ft_print_unsigned.c \
+	ft_print_hexa.c \
+	ft_print_pourc.c \
+	ft_putchar.c \
+	ft_strlen.c \
+	ft_itoa.c \
+
+OBJ = ${SRC:.c=.o}
+
+################################################################################
+# ? RULES ? #
+
+all: ${NAME} compiling saitama
+
+${NAME} : ${OBJ}
+	@ar rc ${NAME} ${OBJ}
+	
+%.o : %.c
+	@${CC} ${CCFLAGS} -c $< -o $@
+
+clean: deleting totoro
+	@rm -f ${OBJ} 
+ 
+fclean:	deletings chat
+	@rm -f ${OBJ};
+	@rm -f ${NAME};
+
+re : fclean all
+
+.PHONY : all clean fclean all re
+
+################################################################################
+# TODO UTILS #
+
+compiling:
+	@${foreach value, $(NAME), echo "\\033[1;32m COMPILED INTO \033[32m\033[5m" ${value};}
+	@tput sgr0;
+	@${foreach value, $(SRC), echo "\\033[1;32m >> \\033[0;29m" ${value};}
+	@echo "\n"
+
+deleting : 
+	@echo "\\033[1;31m\033[5m DELETED FILES :\\033[0;39m"
+	@tput sgr0;
+	@${foreach value, $(OBJ), echo "\\033[1;31m >> \\033[0;39m" ${value};}
+
+deletings : 
+	@echo "\\033[1;31m\033[5m DELETED FILES :\\033[0;39m"
+	@tput sgr0;
+	@${foreach value, $(OBJ), echo "\\033[1;31m >> \\033[0;39m" ${value};}
+	@${foreach value, $(NAME), echo "\\033[1;31m >> \\033[0;39m" ${value};}
+
+chat :
+	@echo "\n ^~^  , \n('Y') ) \n/   \\/ \n(\\|||/)\n"
+
+saitama :
+	@echo " ⠀⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀\n ⠀⠀⠀⣴⠿⠏⠀⠀⠀⠀⠀⠀⢳⡀⠀⡏⠀⠀⠀⠀⠀⢷ \n ⠀⠀⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀⠀⠀ ⡇ \n ⠀⠀⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿⠀⣸  OK  ⡇ \n ⠀⠀⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀⣿⠀⢹⠀⠀⠀⠀⠀ ⡇ \n ⠀⠀⠙⢿⣯⠄⠀⠀⠀⢀⡀⠀⠀⡿⠀⠀⡇⠀⠀⠀⠀⡼ \n ⠀⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀⠀⠘⠤⣄⣠⠞⠀ \n ⠀⠀⠀⠀⠀⢸⣷⡦⢤⡤⢤⣞⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n ⠀⠀⢀⣤⣴⣿⣏⠁⠀⠀⠸⣏⢯⣷⣖⣦⡀⠀⠀⠀⠀⠀⠀ \n ⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿⠀⠀⠀⠀⠀⠀ \n ⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏⠀⠀⠀⣄⢸⠀⠀⠀⠀⠀⠀ \n ⣿⣿⣧⣀⣿………⣀⣰⣏⣘⣆⣀⠀⠀ \n"
+
+totoro :
+	@echo "               	_____\n               /     \\ \n               vvvvvvv  /|__/|\n                  I   /O,O   |\n                  I /_____   |      /|/|\n                 J|/^ ^ ^ \\  |    /00  |    _//|\n                  |^ ^ ^ ^ |W|   |/^^\\ |   /oo |\n                   \\m___m__|_|    \\m_m_|   \\mm_|"
